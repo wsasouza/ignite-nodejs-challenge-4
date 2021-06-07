@@ -55,7 +55,11 @@
             "name": "user_id",
             "in": "header",
             "description": "User id",
-            "required": true
+            "required": true,
+            "schema":{
+              "type": "string",
+              "format": "uuid"
+            }
           }
         ],
         "responses":{
@@ -78,7 +82,11 @@
             "name":"user_id",
             "description": "User id",
             "in": "path",
-            "required": true
+            "required": true,
+            "schema":{
+              "type": "string",
+              "format": "uuid"
+            }
           }
         ],
         "responses":{
@@ -100,12 +108,16 @@
             "name": "user_id",
             "in": "path",
             "description": "User id",
-            "required": true
+            "required": true,
+            "schema":{
+              "type": "string",
+              "format": "uuid"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Ok"
+            "description": "Turn on admin"
           },
           "404": {
             "description": "User not found"
