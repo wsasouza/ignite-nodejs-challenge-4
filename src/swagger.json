@@ -1,0 +1,117 @@
+{
+  "openapi":"3.0.0",
+  "info": {
+    "title": "Ignite-NodeJS Challenge 5",
+    "version": "1.0.0",
+    "description": "This is a Document API Challenge 4",
+    "contact": {
+    "name": "Walter S. A. Souza",
+    "url": "https://github.com/wsasouza/ignite-nodejs-challenge-4",
+    "email": "wsasouza@hotmail.com"
+    }
+  },
+  "paths":{
+    "/users":{
+      "post":{
+        "tags":["Users"],
+        "summary": "Create User",
+        "description": "Create a new user",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "name":{
+                    "type":"string"
+                  },
+                  "email":{
+                    "type": "string"
+                  }
+                },
+                "example":{
+                  "name": "User name sample",
+                  "email": "User email sample"
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "List all users",
+        "description": "List all users if you are an admin",
+        "parameters":[
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses":{
+          "200": {
+            "description": "Listed"
+          },
+          "400": {
+            "description": "Only admin has access"
+          }
+        }
+      }
+    },
+    "/users/{user_id}":{
+      "get":{
+        "tags": ["Users"],
+        "summary": "User profile",
+        "description": "Show user profile",
+        "parameters":[
+          {
+            "name":"user_id",
+            "description": "User id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses":{
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin":{
+      "patch":{
+        "tags": ["Users"],
+        "summary": "Turn on admin",
+        "parameters":[
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }    
+  }
+}
